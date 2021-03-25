@@ -1,63 +1,78 @@
 :root {
-  --mainWhite: #f5f5f5;
-  --mainGreen: #80cfa9;
-  --mainBlack: #333333;
-  --mainRed: #d62828;
-  --mainBlue: #11b5e4;
+    --mainWhite: #f5f5f5;
+    --mainblueNavy: #081753;
+    --mainBlack: #333333;
+    --mainRed: #d62828;
+    --mainBlue: #11b5e4;
 }
+
 body {
-  background: var(--mainWhite);
-  color: #333333;
+    background: var(--mainWhite);
+    color: #333333;
 }
-.btn-green {
-  border-color: var(--mainGreen);
-  background: transparent;
-  color: var(--mainGreen);
+
+.btn-blue {
+    border-color: var(--mainblueNavy);
+    background: transparent;
+    color: var(--mainblueNavy);
 }
-.btn-green:hover {
-  background: var(--mainGreen);
-  color: var(--mainBlack);
+
+.btn-blue:hover {
+    background: var(--mainblueNavy);
+    color: var(--mainWhite);
 }
+
 .form-control {
-  border-color: var(--mainGreen) !important;
+    border-color: var(--mainblueNavy) !important;
 }
 
 .feedback {
-  display: none;
+    display: none;
 }
+
 .item {
-  display: flex;
-  justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
 }
+
 .item-icon {
-  font-size: 1.2rem;
-  cursor: pointer;
+    font-size: 1.2rem;
+    cursor: pointer;
 }
+
 .complete-item {
-  color: var(--mainGreen);
+    color: var(--mainblueNavy);
 }
+
 .complete-item:hover {
-  color: var(--mainGreen);
+    color: var(--mainblueNavy);
 }
+
 .edit-item {
-  color: var(--mainBlue);
+    color: var(--mainBlue);
 }
+
 .edit-item:hover {
-  color: var(--mainBlue);
+    color: var(--mainBlue);
 }
+
 .delete-item {
-  color: var(--mainRed);
+    color: var(--mainRed);
 }
+
 .delete-item:hover {
-  color: var(--mainRed);
+    color: var(--mainRed);
 }
+
 .completed {
-  text-decoration: line-through;
-  opacity: 0.5;
+    text-decoration: line-through;
+    opacity: 0.5;
 }
+
 .visibility {
-  opacity: 0.5;
+    opacity: 0.5;
 }
+
 .showItem {
-  display: block;
+    display: block;
 }
