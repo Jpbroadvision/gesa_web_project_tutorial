@@ -7,33 +7,33 @@ const clearButton = document.querySelector('#clear-list');
 
 let todoItems = [];
 
-const handleItem = function(itemName){
+const handleItem = function(itemName) {
 
     const items = itemList.querySelectorAll('.item');
- 
-    items.forEach(function(item){
-        
-        if(item.querySelector('.item-name').textContent === itemName){
+
+    items.forEach(function(item) {
+
+        if (item.querySelector('.item-name').textContent === itemName) {
             //complete event listener
-            item.querySelector('.complete-item').addEventListener('click', function(){
+            item.querySelector('.complete-item').addEventListener('click', function() {
                 item.querySelector('.item-name').classList.toggle('completed');
                 this.classList.toggle('visibility');
             });
             //edit event listener
-            item.querySelector('.edit-item').addEventListener('click', function(){
+            item.querySelector('.edit-item').addEventListener('click', function() {
                 itemInput.value = itemName;
                 itemList.removeChild(item);
 
-                todoItems = todoItems.filter(function(item){
+                todoItems = todoItems.filter(function(item) {
                     return item !== itemName;
                 });
             });
             // delete event listener
-            item.querySelector('.delete-item').addEventListener('click', function(){
+            item.querySelector('.delete-item').addEventListener('click', function() {
                 debugger;
                 itemList.removeChild(item);
 
-                todoItems = todoItems.filter(function(item){
+                todoItems = todoItems.filter(function(item) {
                     return item !== itemName;
                 });
 
@@ -43,27 +43,33 @@ const handleItem = function(itemName){
     })
 }
 
-const removeItem = function(item){
-    console.log(item);
-    const removeIndex = (todoItems.indexOf(item));
-    console.log(removeIndex);
-    todoItems.splice(removeIndex, 1);
-}
-
-const getList = function(todoItems){
+const removeItem = function(item) {
+        console.log(item);
+        const removeIndex = (todoItems.indexOf(item));
+        console.log(removeIndex);
+        todoItems.splice(removeIndex, 1);
+    }
+    // position NOTES
+    // A DOMString representing the position relative to the element;
+    // must be one of the following strings:
+    //     'beforebegin': Before the element itself.
+    // 'afterbegin': Just inside the element, before its first child.
+    // 'beforeend': Just inside the element, after its last child.
+    // 'afterend': After the element itself.
+const getList = function(todoItems) {
     itemList.innerHTML = '';
 
-        todoItems.forEach(function(item){
-            itemList.insertAdjacentHTML('beforeend', `<div class="item my-3"><h5 class="item-name text-capitalize">${item}</h5><div class="item-icons"><a href="#" class="complete-item mx-2 item-icon"><i class="far fa-check-circle"></i></a><a href="#" class="edit-item mx-2 item-icon"><i class="far fa-edit"></i></a><a href="#" class="delete-item item-icon"><i class="far fa-times-circle"></i></a></div></div>` );
+    todoItems.forEach(function(item) {
+        itemList.insertAdjacentHTML('beforeend', `<div class="item my-3"><h5 class="item-name text-capitalize">${item}</h5><div class="item-icons"><a href="#" class="complete-item mx-2 item-icon"><i class="far fa-check-circle"></i></a><a href="#" class="edit-item mx-2 item-icon"><i class="far fa-edit"></i></a><a href="#" class="delete-item item-icon"><i class="far fa-times-circle"></i></a></div></div>`);
 
-            handleItem(item);
-        });
+        handleItem(item);
+    });
 }
 
-const getLocalStorage = function(){
+const getLocalStorage = function() {
 
     const todoStorage = localStorage.getItem('todoItems');
-    if (todoStorage === 'undefined' || todoStorage === null){
+    if (todoStorage === 'undefined' || todoStorage === null) {
         todoItems = [];
     } else {
         todoItems = JSON.parse(todoStorage);
@@ -71,7 +77,7 @@ const getLocalStorage = function(){
     }
 }
 
-const setLocalStorage = function(todoItems){
+const setLocalStorage = function(todoItems) {
     localStorage.setItem('todoItems', JSON.stringify(todoItems));
 }
 
@@ -79,17 +85,17 @@ const setLocalStorage = function(todoItems){
 getLocalStorage();
 
 //add an item to the List, including to local storage
-form.addEventListener('submit', function(e){ 
+form.addEventListener('submit', function(e) {
     e.preventDefault();
     const itemName = itemInput.value;
-    
-    if (itemName.length === 0){
+
+    if (itemName.length === 0) {
         feedback.innerHTML = 'Please Enter Valid Value';
         feedback.classList.add('showItem', 'alert-danger');
         setTimeout(
-            function(){
+            function() {
                 feedback.classList.remove('showItem');
-                }, 3000);
+            }, 3000);
     } else {
         todoItems.push(itemName);
         setLocalStorage(todoItems);
@@ -97,19 +103,14 @@ form.addEventListener('submit', function(e){
         //add event listeners to icons;
         //handleItem(itemName);
     }
-    
+
     itemInput.value = '';
 
-    });
+});
 
-    //clear all items from the list
-clearButton.addEventListener('click', function(){
+//clear all items from the list
+clearButton.addEventListener('click', function() {
     todoItems = [];
     localStorage.clear();
     getList(todoItems);
 })
-
-
-
-  
-
